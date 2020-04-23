@@ -13,6 +13,7 @@ namespace Assets.GameEntities.UI
         public string Id;
         public TextMeshProUGUI ModuleName;
         public TextMeshProUGUI ModuleValue;
+        public TextMeshProUGUI ModuleInProductionValue;
         private string _name;
 
         public void Init(string name)
@@ -22,8 +23,8 @@ namespace Assets.GameEntities.UI
         void Start()
         {
             ModuleName.text = _name;
-            ModuleValue.text = "0 / 1";
-
+            ModuleValue.text = "0";
+            ModuleInProductionValue.text = "0";
         }
     }
 }

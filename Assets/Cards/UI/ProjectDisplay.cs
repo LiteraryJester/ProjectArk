@@ -42,28 +42,17 @@ public class ProjectDisplay : MonoBehaviour
         {
             CardName.text = Card.CardName;
             Description.text = Card.Description;
-            if (Card.CardType == 2 && state != null)
+            if (Card.CardType == 2)
             {
-                var mass = Card.Mass;
-
-                if ( state != null)
-                {
-                    mass = (int)Math.Floor(mass * (1 + state.MassModifier));
-                }
-                Description.text = $"Mass {mass}, {Card.Description}";
+                Description.text = $"Mass {Card.GetMassValue(state)}, {Card.Description}";
             }
             if (Card.InProgress)
             {
                 ResolutionTime.text = Card.TimeRemaining.ToString();
             }
-            else if( state == null)
-            {
-                ResolutionTime.text = Card.ResolutionTime.ToString();
-
-            }
             else
             {
-                ResolutionTime.text = (Card.ResolutionTime + state.ConstructiontimeModierFixed) .ToString();
+                ResolutionTime.text = Card.GetResolutionTimeValue(state).ToString();
             }
 
             var costUIElements = new List<Tuple<Image, TextMeshProUGUI>>
@@ -86,14 +75,7 @@ public class ProjectDisplay : MonoBehaviour
 
                 var element = costUIElements[0];
                 costUIElements.RemoveAt(0);
-                if (state == null)
-                {
-                    SetCostUIElment(element.Item1, element.Item2, MaterialsIcon, Card.Materials.ToString());
-                }
-                else
-                {
-                    SetCostUIElment(element.Item1, element.Item2, MaterialsIcon, (Card.Materials + state.MaterialsFixedModifier).ToString());
-                }
+                SetCostUIElment(element.Item1, element.Item2, MaterialsIcon, Card.GetMaterialCost(state).ToString());
             }
             if (Card.Science > 0)
             {
@@ -123,6 +105,6 @@ public class ProjectDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

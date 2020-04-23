@@ -23,7 +23,7 @@ namespace Assets.Cards.Preperation.ShipComponents
 
         public override void Resolve(GameState gameState, Ship currentShip)
         {
-            currentShip.AddMass(Mass, gameState.MassModifier);
+            currentShip.Mass += GetMassValue(gameState);
             currentShip.Thrust = 5.5m;
             currentShip.CompleteModule(Id);
 

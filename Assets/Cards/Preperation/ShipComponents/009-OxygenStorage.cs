@@ -25,7 +25,7 @@ namespace Assets.Cards.Preperation.ShipComponents
 
         public override void Resolve(GameState gameState, Ship currentShip)
         {
-            currentShip.AddMass(Mass, gameState.MassModifier);
+            currentShip.Mass += GetMassValue(gameState);
             currentShip.Oxygen +=500;
             currentShip.CompleteModule(Id);
 

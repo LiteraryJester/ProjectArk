@@ -91,6 +91,8 @@ public class PeperationLogic : MonoBehaviour
         LaunchWinDialog.SetActive(true);
     }
 
+   
+
 
     private void HandleBuyProjectClick(Button buyButton, CardBase project, int cardType)
     {
@@ -102,7 +104,7 @@ public class PeperationLogic : MonoBehaviour
             return;
         if (State.Engineering < project.Engineering)
             return;
-        if (State.Materials < project.Materials + State.MaterialsFixedModifier)
+        if (State.Materials < project.GetMaterialCost(State))
             return;
 
         project.InProgress = true;
@@ -110,7 +112,7 @@ public class PeperationLogic : MonoBehaviour
         State.Science -= project.Science;
         State.Engineering -= project.Engineering;
         State.Materials -= (project.Materials + State.MaterialsFixedModifier);
-        project.TimeRemaining += (project.ResolutionTime + State.ConstructiontimeModierFixed);
+        project.TimeRemaining += project.GetResolutionTimeValue(State);
 
         if (cardType == 2)
         {
@@ -157,7 +159,7 @@ public class PeperationLogic : MonoBehaviour
             if (project.InProgress)
             {
                 project.TimeRemaining--;
-                if (project.TimeRemaining % project.ResolutionTime == 0)
+                if (project.TimeRemaining % project.GetResolutionTimeValue(State) == 0)
                 {
                     project.Resolve(State, CurrentShip);
                 }
@@ -355,7 +357,7 @@ public class PeperationLogic : MonoBehaviour
                     buyButton.interactable = false;
                 else if (State.Engineering < project.Engineering)
                     buyButton.interactable = false;
-                else if (State.Materials < project.Materials)
+                else if (State.Materials < project.GetMaterialCost(State))
                     buyButton.interactable = false;
                 else
                     buyButton.interactable = true;
@@ -426,7 +428,7 @@ public class PeperationLogic : MonoBehaviour
                     buyButton.interactable = false;
                 else if (State.Engineering < project.Engineering)
                     buyButton.interactable = false;
-                else if (State.Materials < project.Materials)
+                else if (State.Materials < project.GetMaterialCost(State))
                     buyButton.interactable = false;
                 else
                     buyButton.interactable = true;
@@ -437,6 +439,13 @@ public class PeperationLogic : MonoBehaviour
 
         count = 0;
         var existingModules = ModuleListContainer.GetComponentsInChildren<ModuleLineDisplay>();
+
+        foreach(var moduleUI in existingModules)
+        {
+            moduleUI.GetComponent<ModuleLineDisplay>().ModuleValue.text = "0";
+            moduleUI.GetComponent<ModuleLineDisplay>().ModuleInProductionValue.text = "0";
+        }
+
         foreach (var module in CurrentShip.Modules)
         {
             GameObject moduleUI;
@@ -454,7 +463,9 @@ public class PeperationLogic : MonoBehaviour
                 moduleUI = match.gameObject;
             }
             moduleUI.GetComponent<ModuleLineDisplay>().ModuleName.text = module.Value.Item1;
-            moduleUI.GetComponent<ModuleLineDisplay>().ModuleValue.text = $"{module.Value.Item2} / {module.Value.Item3}";
+            moduleUI.GetComponent<ModuleLineDisplay>().ModuleValue.text = module.Value.Item2.ToString();
+            moduleUI.GetComponent<ModuleLineDisplay>().ModuleInProductionValue.text =( module.Value.Item3- module.Value.Item2).ToString();
+            
             var transform = (RectTransform)moduleUI.transform;
             transform.SetParent(ModuleListContainer.transform);
 

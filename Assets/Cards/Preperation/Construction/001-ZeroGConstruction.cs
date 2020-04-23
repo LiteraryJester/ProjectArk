@@ -21,17 +21,7 @@ public class ZeroGConstruction : CardBase
     {
         Completed = true;
         gameState.MaterialsFixedModifier += 2;
-        currentShip.CrewCapacity = 0;
-        currentShip.Fuel = 0;
-        currentShip.Mass = 0;
-        currentShip.Modules = new Dictionary<string, System.Tuple<string, int, int>>();
-        currentShip.Oxygen = 0;
-        currentShip.OxygenProduction = currentShip.TotalCrew * -1;
-        currentShip.Power = 0;
-        currentShip.PowerProduction = 0;
-        currentShip.SuppliesProduction = currentShip.TotalCrew * -1;
-        currentShip.Supplies = 0;
-        currentShip.Thrust = 0;
+        currentShip.Init(currentShip.CrewVip, currentShip.CrewCorporate, currentShip.CrewScientists, currentShip.CrewEngineers, currentShip.CrewCivilian);
 
 
         gameState.HasZeroGConstruction = true;
@@ -46,8 +36,5 @@ public class ZeroGConstruction : CardBase
         gameState.ResearchProjects.Add(CreateInstance<UltraLightMaterials>());
         gameState.ResearchProjects.Add(CreateInstance<ConstructionDrones>());
         gameState.ResearchProjects.Add(CreateInstance<DoubleDensityAeroponics>());
-
-
-
     }
 }

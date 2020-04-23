@@ -1360,10 +1360,10 @@ MonoBehaviour:
   Card: {fileID: 11400000, guid: 37cd8a1227a1c3e43a3f995842e291e8, type: 2}
   CardName: {fileID: 6576607051105451739}
   Description: {fileID: 6576607051800322382}
-  ScienceIcon: {fileID: 21300000, guid: c6ac6d36f30bd52448d3851dfd41351c, type: 3}
-  EngineeringIcon: {fileID: 21300000, guid: 2646bcc09786b24409e8a80c36c7c8fd, type: 3}
-  MegaCreditIcon: {fileID: 21300000, guid: b600b138d6f58b240bc8ea19a6e250d0, type: 3}
-  MaterialsIcon: {fileID: 21300000, guid: 96b8cb0dc6ce0f244b4d5e62d833973c, type: 3}
+  ScienceIcon: {fileID: 21300000, guid: e7166ab3295248545bedaeb428a238c5, type: 3}
+  EngineeringIcon: {fileID: 21300000, guid: ee7c52867da7c694fbb8a46189b24f5d, type: 3}
+  MegaCreditIcon: {fileID: 21300000, guid: f41985d64b8a57842a7d45fb9c47b2d2, type: 3}
+  MaterialsIcon: {fileID: 21300000, guid: eca5b2e0ccf328141ac72b6c2336ea8b, type: 3}
   ResolutionTime: {fileID: 6576607052080476738}
   Cost1Value: {fileID: 6576607050229962152}
   Cost1Icon: {fileID: 6576607052043574882}
@@ -1749,7 +1749,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 2
-  m_firstOverflowCharacterIndex: 209
+  m_firstOverflowCharacterIndex: 145
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -1778,7 +1778,7 @@ MonoBehaviour:
     spaceCount: 53
     wordCount: 54
     linkCount: 0
-    lineCount: 4
+    lineCount: 6
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

@@ -19,10 +19,7 @@ public class CorporateEngineering : CardBase
     {
         Completed = true;
         gameState.EngineeringProduction += 1;
-        currentShip.CrewCorporate++;
-        currentShip.Mass++;
-        currentShip.OxygenProduction--;
-        currentShip.SuppliesProduction--;
+        currentShip.AddCrewCorporate(1);
         if (gameState.ResearchProjects.Any(x => x.Id == "CORP-002" && x.Completed) && gameState.ResearchProjects.All(x=>x.Id != "CORP-010"))
         {
             gameState.ResearchProjects.Add(CreateInstance<CorporatePod>());

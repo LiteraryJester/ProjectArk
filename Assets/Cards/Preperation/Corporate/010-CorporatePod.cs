@@ -17,11 +17,8 @@ public class CorporatePod : CardBase
     public override void Resolve(GameState gameState, Ship currentShip)
     {
         Completed = true;
-        currentShip.CrewCorporate += 10;
-        currentShip.CrewCapacity += 10;
-        currentShip.Mass = 60;
-        currentShip.OxygenProduction-=10;
-        currentShip.SuppliesProduction-=10;
+        currentShip.AddCrewCorporate(10);
+        currentShip.Mass = 50;
         currentShip.PowerProduction -= 5;
         gameState.MegaCredits += 50;
         gameState.Materials += 50;
